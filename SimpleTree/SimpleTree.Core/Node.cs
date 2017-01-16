@@ -6,14 +6,14 @@ namespace SimpleTree.Core
     {
         private T data;
 
-        public LinkedList<Node<T>> Children { get; private set; }
+        private LinkedList<Node<T>> children;
 
         private Node<T> parent;
 
         public Node()
         {
             this.parent = null;
-            this.Children = new LinkedList<Node<T>>();
+            this.children = new LinkedList<Node<T>>();
         }
 
         public Node(T data) : this()
@@ -31,9 +31,9 @@ namespace SimpleTree.Core
             return this.parent;
         }
 
-        public void SetParent(Node<T> node)
+        public void SetParent(Node<T> root)
         {
-            this.parent = node;
+            this.parent = root;
         }
 
         public T GetData()
@@ -41,23 +41,28 @@ namespace SimpleTree.Core
             return this.data;
         }
 
-        public void SetData(T d)
+        public void SetData(T value)
         {
-            this.data = d;
+            this.data = value;
         }
 
         public Node<T> AddChild(Node<T> child)
         {
             child.SetParent(this);
-            this.Children.AddLast(child);
+            this.children.AddLast(child);
             return child;            
         }
 
         public Node<T> AddChild(T value)
         {
             var child = new Node<T>(value, this);
-            this.Children.AddLast(child);
+            this.children.AddLast(child);
             return child;
+        }
+
+        public LinkedList<Node<T>> GetChildren()
+        {
+            return this.children;
         }
     }
 }

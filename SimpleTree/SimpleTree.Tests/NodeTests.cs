@@ -15,7 +15,7 @@
         }
 
         [Fact]
-        public void CreatedNodeHasAGivenPropertyData()
+        public void CreatedNodeHasData()
         {
             var sut = new Node<string>("New node");
             Assert.NotNull(sut);
@@ -23,11 +23,11 @@
         }
 
         [Fact]
-        public void NodeHasChildren()
+        public void NodeHasChildrenDefined()
         {
             var sut = new Node<string>(Data);
             Assert.NotNull(sut);
-            Assert.NotNull(sut.Children);
+            Assert.NotNull(sut.GetChildren());
         }
 
         [Fact]
@@ -108,6 +108,20 @@
                         
             Assert.Equal("child", actual.GetData());
             Assert.Equal("root", actual.GetParent().GetData());
-        }           
+        }
+
+        [Fact]
+        public void GetChildren_ReturnsChildrenForGivenNode()
+        {
+            var sut = new Node<string>();
+            var child = new Node<string>("child");
+
+            sut.AddChild(child);
+
+            var actual = sut.GetChildren();
+
+            Assert.NotNull(actual);
+            Assert.Contains(child, actual);
+        }
     }
 }
