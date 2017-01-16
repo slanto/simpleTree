@@ -19,7 +19,7 @@
         {
             Node sut = new Node("New node");
             Assert.NotNull(sut);
-            Assert.Equal("New node", sut.Data);
+            Assert.Equal("New node", sut.GetData());
         }
 
         [Fact]
@@ -65,6 +65,25 @@
 
             var actual = sut.GetParent();
             Assert.Equal(parent, actual);
+        }
+
+        [Fact]
+        public void GetData_ReturnsDataForGivenChildNode()
+        {            
+            Node sut = new Node("data");
+            var actual = sut.GetData();
+            Assert.Equal("data", actual);
+        }
+
+        [Fact]
+        public void SetData_SetsDataForGivenChildNode()
+        {
+            Node sut = new Node();
+            var data = "New data";
+            sut.SetData(data);
+
+            var actual = sut.GetData();
+            Assert.Equal(data, actual);
         }
     }
 }

@@ -4,18 +4,21 @@ namespace SimpleTree.Core
 
     public class Node
     {
-        public string Data  { get; private set; }
+        private string data;
 
         public LinkedList<string> Children { get; private set; }
 
         private Node parent;
 
-        public Node(string data)
+        public Node()
         {
-            this.Data = data;
-            this.Children = new LinkedList<string>();
-            // without parent
             this.parent = null;
+            this.Children = new LinkedList<string>();
+        }
+
+        public Node(string data) : this()
+        {
+            this.data = data;        
         }
 
         public Node(string data, Node parent) : this(data)
@@ -31,7 +34,16 @@ namespace SimpleTree.Core
         public void SetParent(Node node)
         {
             this.parent = node;
+        }
 
+        public string GetData()
+        {
+            return this.data;
+        }
+
+        public void SetData(string d)
+        {
+            this.data = d;
         }
     }
 }
