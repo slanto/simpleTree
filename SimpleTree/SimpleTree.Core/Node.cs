@@ -2,46 +2,46 @@ namespace SimpleTree.Core
 {
     using System.Collections.Generic;
 
-    public class Node
+    public class Node<T>
     {
-        private string data;
+        private T data;
 
-        public LinkedList<string> Children { get; private set; }
+        public LinkedList<T> Children { get; private set; }
 
-        private Node parent;
+        private Node<T> parent;
 
         public Node()
         {
             this.parent = null;
-            this.Children = new LinkedList<string>();
+            this.Children = new LinkedList<T>();
         }
 
-        public Node(string data) : this()
+        public Node(T data) : this()
         {
             this.data = data;        
         }
 
-        public Node(string data, Node parent) : this(data)
+        public Node(T data, Node<T> parent) : this(data)
         {            
             this.parent = parent;
         }
 
-        public Node GetParent()
+        public Node<T> GetParent()
         {
             return this.parent;
         }
 
-        public void SetParent(Node node)
+        public void SetParent(Node<T> node)
         {
             this.parent = node;
         }
 
-        public string GetData()
+        public T GetData()
         {
             return this.data;
         }
 
-        public void SetData(string d)
+        public void SetData(T d)
         {
             this.data = d;
         }

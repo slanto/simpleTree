@@ -10,14 +10,14 @@
         [Fact]
         public void CreateNotNullNode()
         {
-            Node sut = new Node(Data);
+            Node<string> sut = new Node<string>(Data);
             Assert.NotNull(sut);
         }
 
         [Fact]
         public void CreatedNodeHasAGivenPropertyData()
         {
-            Node sut = new Node("New node");
+            Node<string> sut = new Node<string>("New node");
             Assert.NotNull(sut);
             Assert.Equal("New node", sut.GetData());
         }
@@ -25,7 +25,7 @@
         [Fact]
         public void NodeHasChildren()
         {
-            Node sut = new Node(Data);
+            Node<string> sut = new Node<string>(Data);
             Assert.NotNull(sut);
             Assert.NotNull(sut.Children);
         }
@@ -33,7 +33,7 @@
         [Fact]
         public void RootNodeDoesNotHaveAParent()
         {
-            Node sut = new Node(Data);
+            Node<string> sut = new Node<string>(Data);
             Assert.NotNull(sut);
             Assert.Null(sut.GetParent());
         }
@@ -41,8 +41,8 @@
         [Fact]
         public void ChildNodeHasAParent()
         {
-            var root = new Node("root");
-            Node sut = new Node("data", root);
+            var root = new Node<string>("root");
+            Node<string> sut = new Node<string>("data", root);
             Assert.NotNull(sut);
             Assert.NotNull(sut.GetParent());
         }
@@ -50,8 +50,8 @@
         [Fact]
         public void GetParent_ReturnsParentForGivenChildNode()
         {
-            var parent = new Node("parent");
-            Node sut = new Node("data", parent);
+            var parent = new Node<string>("parent");
+            Node<string> sut = new Node<string>("data", parent);
             var actual = sut.GetParent();
             Assert.Equal(parent, actual);
         }
@@ -59,8 +59,8 @@
         [Fact]
         public void SetParent_SetsParentForGivenChildNode()
         {            
-            Node sut = new Node("data");
-            var parent = new Node("parent");
+            Node<string> sut = new Node<string>("data");
+            var parent = new Node<string>("parent");
             sut.SetParent(parent);
 
             var actual = sut.GetParent();
@@ -70,7 +70,7 @@
         [Fact]
         public void GetData_ReturnsDataForGivenChildNode()
         {            
-            Node sut = new Node("data");
+            Node<string> sut = new Node<string>("data");
             var actual = sut.GetData();
             Assert.Equal("data", actual);
         }
@@ -78,7 +78,7 @@
         [Fact]
         public void SetData_SetsDataForGivenChildNode()
         {
-            Node sut = new Node();
+            Node<string> sut = new Node<string>();
             var data = "New data";
             sut.SetData(data);
 
