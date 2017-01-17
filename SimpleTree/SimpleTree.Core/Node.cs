@@ -1,12 +1,13 @@
 namespace SimpleTree.Core
 {
     using System.Collections.Generic;
+    using System.Linq;
 
-    public class Node<T>
+    public class Node<T> : INode<T>
     {
         private T data;
 
-        private LinkedList<Node<T>> children;
+        private readonly LinkedList<Node<T>> children;
 
         private Node<T> parent;
 
@@ -63,6 +64,11 @@ namespace SimpleTree.Core
         public LinkedList<Node<T>> GetChildren()
         {
             return this.children;
+        }
+
+        public Node<T> GetChild(int index)
+        {            
+            return this.children.ElementAtOrDefault(index);
         }
     }
 }

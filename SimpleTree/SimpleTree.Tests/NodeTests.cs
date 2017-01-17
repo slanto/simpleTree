@@ -123,5 +123,34 @@
             Assert.NotNull(actual);
             Assert.Contains(child, actual);
         }
+
+        [Fact]
+        public void GetChild_ReturnsChildBasedOnGivenIndex()
+        {
+            var sut = new Node<string>();
+            var firstChild = new Node<string>("First child");
+            var secondChild = new Node<string>("Second child");
+
+            sut.AddChild(firstChild);
+            sut.AddChild(secondChild);
+
+            var actual = sut.GetChild(1);
+
+            Assert.NotNull(actual);
+            Assert.Equal(secondChild, actual);
+        }
+
+        [Fact]
+        public void GetChild_ReturnsNullForIndexOutOfRange()
+        {
+            var sut = new Node<string>();
+            var firstChild = new Node<string>("First child");
+            
+            sut.AddChild(firstChild);
+            
+            var actual = sut.GetChild(1);
+
+            Assert.Null(actual);            
+        }
     }
 }
